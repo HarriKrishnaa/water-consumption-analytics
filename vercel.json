@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "env": {
+    "AWS_REGION": "us-east-1",
+    "AWS_IOT_ENDPOINT": "@aws_iot_endpoint",
+    "AWS_IOT_POLICY_NAME": "water-meter-policy"
+  },
+  "functions": {
+    "api/**": {
+      "memory": 1024,
+      "maxDuration": 30,
+      "runtime": "nodejs18.x"
+    }
+  },
+  "regions": ["iad1"],
+  "git": {
+    "silent": false
+  },
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- ."
+}
