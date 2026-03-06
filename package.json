@@ -1,7 +1,6 @@
 {
   "name": "water-consumption-analytics",
-  "version": "1.0.0",
-  "description": "AWS-based real-time water consumption monitoring and leak detection system for apartment buildings",
+"version": "1.0.1",  "description": "AWS-based real-time water consumption monitoring and leak detection system for apartment buildings",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
