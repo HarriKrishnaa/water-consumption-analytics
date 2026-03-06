@@ -1,6 +1,10 @@
 # Water Consumption & Leakage Analytics System 💧
 
-AWS-based real-time water consumption monitoring and leak detection system for apartment buildings.
+AWS-based real-time water consumption monitoring and leak detection system for apartment 
+
+## Deployment Status
+- **Production**: Deployed to Vercel
+buildings.
 
 ## Overview
 
