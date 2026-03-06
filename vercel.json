@@ -5,7 +5,6 @@
   "outputDirectory": ".next",
   "env": {
     "AWS_REGION": "us-east-1",
-    "AWS_IOT_ENDPOINT": "@aws_iot_endpoint",
     "AWS_IOT_POLICY_NAME": "water-meter-policy"
   },
   "functions": {
