@@ -124,5 +124,6 @@ const HomePage = () => {
     </div>
   );
 };
+// Water consumption monitoring dashboard
 
 export default HomePage;
