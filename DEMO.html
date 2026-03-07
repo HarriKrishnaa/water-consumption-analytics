@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Consumption & Leakage Analytics - Society Management Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-card h3 { font-size: 2.5em; margin-bottom: 5px; }
+        .stat-card p { opacity: 0.9; }
+        .alert-section {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .alert-section h2 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        .alert-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .alert-item strong { color: #d32f2f; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .data-table tr:hover { background: #f8f9fa; }
+        .load-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+        .load-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5); }
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .tech-stack h3 { color: #2c3e50; margin-bottom: 15px; }
+        .tech-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+        .info-section {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚰 Water Consumption & Leakage Analytics</h1>
+        <p class="subtitle">Real-Time Monitoring Dashboard for Apartment Complexes | Powered by AWS</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>847</h3>
+                <p>Total Flats Monitored</p>
+            </div>
+            <div class="stat-card">
+                <h3>12</h3>
+                <p>Active Leak Alerts</p>
+            </div>
+            <div class="stat-card">
+                <h3>3.2M</h3>
+                <p>Liters Saved This Month</p>
+            </div>
+            <div class="stat-card">
+                <h3>98.7%</h3>
+                <p>System Uptime</p>
+            </div>
+        </div>
+
+        <div class="alert-section">
+            <h2>⚠️ Current Water Alerts (DynamoDB Real-Time)</h2>
+            <div class="alert-item">
+                <strong>Flat A-101:</strong> 3AM leak detected - Average nighttime flow 67.3 L (Threshold: 50 L) | Last 7 nights avg
+            </div>
+            <div class="alert-item">
+                <strong>Flat B-204:</strong> Usage spike - 650 L in last hour (3.2x baseline of 200 L/hour)
+            </div>
+            <div class="alert-item">
+                <strong>Common Area - Terrace:</strong> Continuous flow detected for 14 hours (Possible tank overflow)
+            </div>
+            <div class="alert-item">
+                <strong>Flat C-305:</strong> Persistent leak - Nighttime consumption pattern for 5 consecutive nights
+            </div>
+        </div>
+
+        <h2 style="color: #2c3e50; margin-bottom: 20px;">📊 Per-Flat Water Usage (Timestream Query)</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Flat ID</th>
+                    <th>Today (Liters)</th>
+                    <th>7-Day Avg</th>
+                    <th>Status</th>
+                    <th>Last Reading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A-101</td>
+                    <td>385</td>
+                    <td>220</td>
+                    <td style="color: #d32f2f; font-weight: bold;">🔴 Leak</td>
+                    <td>2 min ago</td>
+                </tr>
+                <tr>
+                    <td>A-102</td>
+                    <td>190</td>
+                    <td>195</td>
+                    <td style="color: #388e3c; font-weight: bold;">✅ Normal</td>
+                    <td>1 min ago</td>
+                </tr>
+                <tr>
+                    <td>B-204</td>
+                    <td>650</td>
+                    <td>200</td>
+                    <td style="color: #d32f2f; font-weight: bold;">🔴 Spike</td>
+                    <td>5 sec ago</td>
+                </tr>
+                <tr>
+                    <td>B-205</td>
+                    <td>215</td>
+                    <td>210</td>
+                    <td style="color: #388e3c; font-weight: bold;">✅ Normal</td>
+                    <td>3 min ago</td>
+                </tr>
+                <tr>
+                    <td>C-305</td>
+                    <td>420</td>
+                    <td>180</td>
+                    <td style="color: #f57c00; font-weight: bold;">⚠️ Monitor</td>
+                    <td>1 min ago</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-section">
+            <h3 style="color: #1976d2; margin-bottom: 15px;">ℹ️ 3AM Leak Detection Logic (Lambda + Timestream)</h3>
+            <p style="color: #424242; line-height: 1.8;">
+                <strong>Daily Lambda Function:</strong> Runs at 4:00 AM IST, queries Timestream for each flat's 2-4 AM consumption over the last 7 days. 
+                If average nighttime flow exceeds <strong>50 liters</strong>, the flat is flagged as a likely leak candidate. 
+                Alerts are written to DynamoDB and emails sent via SES to both the flat owner and society manager.
+            </p>
+        </div>
+
+        <div class="tech-stack">
+            <h3>🛠️ AWS Architecture (Backend Services)</h3>
+            <span class="tech-badge">IoT Core</span>
+            <span class="tech-badge">Kinesis Data Streams</span>
+            <span class="tech-badge">Kinesis Analytics</span>
+            <span class="tech-badge">Timestream</span>
+            <span class="tech-badge">S3 (Parquet)</span>
+            <span class="tech-badge">Glue ETL</span>
+            <span class="tech-badge">Athena</span>
+            <span class="tech-badge">DynamoDB</span>
+            <span class="tech-badge">Lambda</span>
+            <span class="tech-badge">SES</span>
+            <span class="tech-badge">Pinpoint</span>
+            <span class="tech-badge">QuickSight</span>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Smart Water Management System | AWS Account: 462633925085 | Region: us-east-1</p>
+            <p style="margin-top: 10px;">Deployed via GitHub Pages | Backend: AWS Serverless Architecture</p>
+        </div>
+    </div>
+</body>
+</html>
