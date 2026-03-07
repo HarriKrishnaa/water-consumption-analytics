@@ -55,8 +55,7 @@ export default function RootLayout({
               >
                 <BarChart3 className="w-5 h-5 text-slate-400 group-hover:text-purple-400" />
                 <span className="text-sm font-medium">Deep Analytics</span>
-              </Link>
-            </nav>
+              </Link>            </nav>
 
             <div className="p-4 border-t border-slate-800">
               <div className="text-xs text-slate-500">
